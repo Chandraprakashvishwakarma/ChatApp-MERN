@@ -44,7 +44,7 @@ export const signup = asyncHandler(async (req, res) => {
     });
   } catch (err) {
     console.log("error in sign up page");
-    res.status(500).json({ message: "Internal server error!!" });
+    res.status(500).json({ error: "Internal server error!!" });
   }
 });
 
@@ -69,7 +69,7 @@ export const login = async (req, res) => {
     });
   } catch (err) {
     console.log("error in login page");
-    res.status(500).json({ message: "Internal server error!!" });
+    res.status(500).json({ error: "Internal server error!!" });
   }
 };
 
