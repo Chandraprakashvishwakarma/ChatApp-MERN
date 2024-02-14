@@ -8,11 +8,11 @@ export const signup = asyncHandler(async (req, res) => {
     const { fullname, username, password, confirmPassword, gender } = req.body;
     const user = await User.findOne({ username });
     if (user) {
-      return res.status(400).json({ message: "User already exist!" });
+      return res.status(400).json({ error: "User already exist!" });
     }
 
     if (password !== confirmPassword) {
-      return res.status(400).json({ message: "Passwords do not match!!" });
+      return res.status(400).json({ error: "Passwords do not match!!" });
     }
     const genderr = gender === "male" ? "boy" : "girl";
 
@@ -28,7 +28,7 @@ export const signup = asyncHandler(async (req, res) => {
 
     if (!newUser) {
       return res.status(400).json({
-        message: "Internal server error! User not created, please try again.",
+        error: "Internal server error! User not created, please try again.",
       });
     }
 
@@ -59,7 +59,7 @@ export const login = async (req, res) => {
     if (!user || !isPasswordCorrect) {
       return res
         .status(400)
-        .json({ message: "Username or password is invalid!" });
+        .json({ error: "Username or password is invalid!" });
     }
     generateTokenAndSetCookie(user._id, res);
     res.status(200).json({
