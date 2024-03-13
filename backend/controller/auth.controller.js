@@ -40,6 +40,7 @@ export const signup = asyncHandler(async (req, res) => {
     res.status(201).json({
       _id: newUser._id,
       username: newUser.username,
+      profilePic: newUser.profilePic,
       message: "User created..",
     });
   } catch (err) {
@@ -65,6 +66,7 @@ export const login = async (req, res) => {
     res.status(200).json({
       _id: user._id,
       username: user.username,
+      profilePic:user.profilePic,
       message: "User logged in succesfully..",
     });
   } catch (err) {
