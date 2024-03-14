@@ -2,9 +2,34 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../contexts/AuthContext";
 
+function validateInputs({
+   fullname,
+   username,
+   password,
+   confirmPassword,
+   gender,
+}) {
+   if (!fullname || !username || !password || !confirmPassword || !gender) {
+      toast.error("Please fill all fields!");
+      return false;
+   }
+
+   if (password !== confirmPassword) {
+      toast.error("Password do not match!");
+      return false;
+   }
+
+   if (password.length < 6) {
+      toast.error("Password must be atleast 6 character");
+      return false;
+   }
+
+   return true;
+}
+
 const useSignup = () => {
    const [loading, setLoading] = useState(false);
-   const {setAuthUser} = useAuthContext();
+   const { setAuthUser } = useAuthContext();
    const signup = async ({
       fullname,
       username,
@@ -38,7 +63,7 @@ const useSignup = () => {
          if (data.error) throw new Error(data.error);
 
          //save user in local storage
-         localStorage.setItem("chat-user",JSON.stringify(data));
+         localStorage.setItem("chat-user", JSON.stringify(data));
          //create context
          setAuthUser(data);
 
@@ -46,35 +71,10 @@ const useSignup = () => {
       } catch (error) {
          toast.error(error.message);
       } finally {
-         setLoading(false);ƒ
+         setLoading(false);
       }
    };
    return { loading, signup };
 };
 
 export default useSignup;
-
-function validateInputs({
-   fullname,
-   username,
-   password,
-   confirmPassword,
-   gender,
-}) {
-   if (!fullname || !username || !password || !confirmPassword || !gender) {
-      toast.error("Please fill all fields!");
-      return false;
-   }
-
-   if (password !== confirmPassword) {
-      toast.error("Password do not match!");
-      return false;
-   }
-
-   if (password.length < 6) {
-      toast.error("Password must be atleast 6 character");
-      return false;
-   }
-
-   return true;
-}

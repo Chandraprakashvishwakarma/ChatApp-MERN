@@ -39,12 +39,13 @@ export const signup = asyncHandler(async (req, res) => {
 
     res.status(201).json({
       _id: newUser._id,
+      fullname:newUser.fullname,
       username: newUser.username,
-      profilePic: newUser.profilePic,
+      profilePic:newUser.profilePic,
       message: "User created..",
     });
   } catch (err) {
-    console.log("error in sign up page");
+    console.log("Error in sign up page",err.message);
     res.status(500).json({ error: "Internal server error!!" });
   }
 });
@@ -65,6 +66,7 @@ export const login = async (req, res) => {
     generateTokenAndSetCookie(user._id, res);
     res.status(200).json({
       _id: user._id,
+      fullname:user.fullname,
       username: user.username,
       profilePic:user.profilePic,
       message: "User logged in succesfully..",
