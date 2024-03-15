@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { FaHome } from "react-icons/fa";
 import MessageInput from "./MessageInput";
 import Messages from "./Messages";
 import { TiMessages } from "react-icons/ti";
@@ -14,13 +14,16 @@ const MessageContainer = () => {
       <div className="flex flex-col w-full h-full">
          <>
             <div className="flex items-center justify-between px-4 py-2 mb-2 bg-slate-500">
-               <div >
+               <div>
                   <span className="label-text">To:</span>{" "}
                   <span className="font-bold text-gray-900">
                      {selectedConversation.fullname}
                   </span>
                </div>
-               <button className=" sm:hidden btn btn-active btn-ghost" onClick={()=>setSelectedConversation(null)}>
+               <button
+                  className=" sm:hidden btn btn-active btn-ghost"
+                  onClick={() => setSelectedConversation(null)}>
+                  <FaHome />
                   Home
                </button>
             </div>
