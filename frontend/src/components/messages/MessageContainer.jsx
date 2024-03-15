@@ -21,7 +21,7 @@ const MessageContainer = () => {
                   </span>
                </div>
                <button className=" sm:hidden btn btn-active btn-ghost" onClick={()=>setSelectedConversation(null)}>
-                  Back
+                  Home
                </button>
             </div>
 
