@@ -8,7 +8,7 @@ const Home = () => {
    const visible = !selectedConversation ? "block" : "hidden";
 
    return (
-      <div className="flex h-[90%] w-[80%] overflow-hidden bg-gray-400 bg-opacity-0 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-lg">
+      <div className="flex h-[90%] w-full sm:w-[80%] overflow-hidden bg-gray-400 bg-opacity-0 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-lg">
          <div className={`w-full ${visible} sm:block` }>
             <Sidebar />
          </div>
