@@ -7,28 +7,27 @@ import { useAuthContext } from "../../contexts/AuthContext";
 
 const MessageContainer = () => {
    const { selectedConversation, setSelectedConversation } = useConversation();
-   useEffect(() => {
-      return () => {
-         setSelectedConversation(null);
-      };
-   }, [setSelectedConversation]);
-   return (
-      <div className="md:min-w-[450px] flex flex-col">
-         {!selectedConversation ? (
-            <NoChatSelected />
-         ) : (
-            <>
-               <div className="px-4 py-2 mb-2 bg-slate-500">
+
+   return !selectedConversation ? (
+      <NoChatSelected />
+   ) : (
+      <div className="flex flex-col w-full h-full">
+         <>
+            <div className="flex items-center justify-between px-4 py-2 mb-2 bg-slate-500">
+               <div >
                   <span className="label-text">To:</span>{" "}
                   <span className="font-bold text-gray-900">
                      {selectedConversation.fullname}
                   </span>
                </div>
+               <button className=" sm:hidden btn btn-active btn-ghost" onClick={()=>setSelectedConversation(null)}>
+                  Back
+               </button>
+            </div>
 
-               <Messages />
-               <MessageInput />
-            </>
-         )}
+            <Messages />
+            <MessageInput />
+         </>
       </div>
    );
 };
@@ -47,3 +46,9 @@ const NoChatSelected = () => {
 };
 
 export default MessageContainer;
+
+// useEffect(() => {
+//    return () => {
+//       setSelectedConversation(null);
+//    };
+// }, [setSelectedConversation]);

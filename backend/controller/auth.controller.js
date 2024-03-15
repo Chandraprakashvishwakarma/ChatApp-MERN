@@ -72,7 +72,7 @@ export const login = async (req, res) => {
       message: "User logged in succesfully..",
     });
   } catch (err) {
-    console.log("error in login page");
+    console.log("error in login page",err.message);
     res.status(500).json({ error: "Internal server error!!" });
   }
 };

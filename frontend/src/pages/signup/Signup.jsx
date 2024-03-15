@@ -12,6 +12,8 @@ const SignUp = () => {
       gender: "",
    });
 
+   const [showPassword, setShowPassword] = useState("password");
+
    const { loading, signup } = useSignup();
 
    const handleSubmit = async (e) => {
@@ -23,8 +25,16 @@ const SignUp = () => {
       setInputs({ ...inputs, gender });
    };
 
+   const handleShowPassword = () => {
+      if (showPassword === "password") {
+         setShowPassword("text");
+      } else {
+         setShowPassword("password");
+      }
+   };
+
    return (
-      <div className="flex flex-col items-center justify-center mx-auto min-w-96">
+      <div className="flex flex-col items-center justify-center mx-auto w-[95%] h-2/3 sm:w-1/3 sm:h-[70%]">
          <div className="w-full p-6 bg-red-400 bg-opacity-0 rounded-lg shadow-md bg-clip-padding backdrop-filter backdrop-blur-md">
             <h1 className="text-3xl font-semibold text-center text-gray-300">
                Sign Up <span className="text-blue-500"> ChatApp</span>
@@ -66,7 +76,7 @@ const SignUp = () => {
                      <span className="text-base label-text">Password</span>
                   </label>
                   <input
-                     type="password"
+                     type={showPassword}
                      placeholder="Enter Password"
                      className="w-full h-10 input input-bordered"
                      value={inputs.password}
@@ -83,7 +93,7 @@ const SignUp = () => {
                      </span>
                   </label>
                   <input
-                     type="password"
+                     type={showPassword}
                      placeholder="Confirm Password"
                      className="w-full h-10 input input-bordered"
                      value={inputs.confirmPassword}
@@ -94,6 +104,18 @@ const SignUp = () => {
                         });
                      }}
                   />
+               </div>
+               <div className="flex">
+                  <label className="cursor-pointer label">
+                     <input
+                        type="checkbox"
+                        className="checkbox"
+                        onChange={()=>{}}
+                        checked={showPassword !== "password"}
+                        onClick={() => handleShowPassword()}
+                     />
+                     <span className="mx-2 label-text">Show password</span>
+                  </label>
                </div>
 
                <GenderCheckbox
