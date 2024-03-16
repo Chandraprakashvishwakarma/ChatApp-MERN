@@ -4,16 +4,22 @@ import Messages from "./Messages";
 import { TiMessages } from "react-icons/ti";
 import useConversation from "../../zustand/useConversation";
 import { useAuthContext } from "../../contexts/AuthContext";
+import { useSocketContext } from "../../contexts/SocketContext";
 
 const MessageContainer = () => {
    const { selectedConversation, setSelectedConversation } = useConversation();
+   const { onlineUsers } = useSocketContext();
+   const isOnline = onlineUsers.includes(selectedConversation?._id);
 
    return !selectedConversation ? (
       <NoChatSelected />
    ) : (
       <div className="flex flex-col w-full h-full">
          <>
-            <div className="flex items-center justify-between px-4 py-2 mb-2 bg-slate-500">
+            <div
+               className={`flex items-center justify-between px-4 py-2 mb-2 bg-slate-500 avatar ${
+                  isOnline ? "online" : ""
+               }`}>
                <div>
                   <span className="label-text">To:</span>{" "}
                   <span className="font-bold text-gray-900">
